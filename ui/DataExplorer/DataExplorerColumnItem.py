@@ -10,3 +10,4 @@ class DataExplorerColumnItem(QTreeWidgetItem):
         self.setText(1, column_dtype)
 
         return
+

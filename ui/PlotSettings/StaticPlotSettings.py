@@ -31,8 +31,7 @@ class StaticPlotSettings(QtWidgets.QWidget):
         self.NumSamplesSpinBox.setObjectName("NumSamplesSpinBox")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.NumSamplesSpinBox)
         self.NumSamplesSpinBox.setWrapping(False)
-        self.NumSamplesSpinBox.setMinimum(0)
-        self.NumSamplesSpinBox.setMaximum(1E6)
+        self.NumSamplesSpinBox.setRange(1,999999999) # no one should ever plot that many points... I hope...
         self.NumSamplesSpinBox.setSingleStep(100)
         self.NumSamplesSpinBox.setValue(1000)
 
