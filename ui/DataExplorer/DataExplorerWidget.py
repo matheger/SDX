@@ -17,7 +17,7 @@ class DataExplorerWidget(QTreeWidget):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setObjectName("parent")
+        self.setObjectName("DataExplorer")
         self.setColumnCount(2)
         self.setHeaderLabels(["Column", "dtype"])
         self.setColumnWidth(0, 80)

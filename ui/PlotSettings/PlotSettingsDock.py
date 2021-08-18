@@ -11,6 +11,8 @@ class PlotSettingsDock(QtWidgets.QDockWidget):
         self.setup_ui()
 
     def setup_ui(self):
+        self.setObjectName("PlotSettingsDock")
+
         self.DockContents = QtWidgets.QWidget(self)
         self.DockContents.setObjectName("Contents")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.DockContents)

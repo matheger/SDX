@@ -10,7 +10,7 @@ class StaticPlotSettings(QtWidgets.QWidget):
         return
 
     def setupUi(self):
-        self.setObjectName("self")
+        self.setObjectName("StaticPlotSettings")
 
         self.formLayout = QtWidgets.QFormLayout(self)
         self.formLayout.setObjectName("formLayout")
@@ -59,7 +59,7 @@ class StaticPlotSettings(QtWidgets.QWidget):
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("self", "self"))
+        self.setWindowTitle(_translate("self", "General settings"))
         self.PlotTypeLabel.setText(_translate("self", "Plot type"))
         self.NumSamplesCheckBox.setText(_translate("self", "Samples"))
         self.UpdateButton.setText(_translate("self", "Update"))

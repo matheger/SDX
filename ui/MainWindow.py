@@ -27,14 +27,14 @@ class MainWindow(QMainWindow):
         self.PlotView = PlotView()
         self.horizontalLayout.addWidget(self.PlotView)
 
-        self.menubar = QtWidgets.QMenuBar(self)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 841, 21))
-        self.menubar.setObjectName("menubar")
-        self.setMenuBar(self.menubar)
+        # self.menubar = QtWidgets.QMenuBar(self)
+        # self.menubar.setGeometry(QtCore.QRect(0, 0, 1064, 800))
+        # self.menubar.setObjectName("menubar")
+        # self.setMenuBar(self.menubar)
 
-        self.statusbar = QtWidgets.QStatusBar(self)
-        self.statusbar.setObjectName("statusbar")
-        self.setStatusBar(self.statusbar)
+        # self.statusbar = QtWidgets.QStatusBar(self)
+        # self.statusbar.setObjectName("statusbar")
+        # self.setStatusBar(self.statusbar)
 
         self.DataExplorerDock = DataExplorerDock(self)
         self.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.DataExplorerDock)
@@ -45,10 +45,11 @@ class MainWindow(QMainWindow):
         self.retranslateUi()
 
         QtCore.QMetaObject.connectSlotsByName(self)
+        return
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.setWindowTitle(_translate("MainWindow", "Seaborn Data Explorer"))
         self.DataExplorerDock.setWindowTitle(_translate("MainWindow", "Data Explorer"))
 
     @QtCore.pyqtSlot()

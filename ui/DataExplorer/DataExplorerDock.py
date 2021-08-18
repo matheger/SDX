@@ -16,6 +16,8 @@ class DataExplorerDock(QtWidgets.QDockWidget):
         return
 
     def setupUi(self):
+        self.setObjectName("DataExplorerDock")
+
         self.DockContents = QtWidgets.QWidget(self)
         self.DockContents.setObjectName("DockContents")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.DockContents)
@@ -52,7 +54,7 @@ class DataExplorerDock(QtWidgets.QDockWidget):
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("self", "self"))
+        self.setWindowTitle(_translate("self", "Data Explorer"))
         self.OpenFileButton.setText(_translate("self", "Open File"))
         self.CloseFileButton.setText(_translate("self", "Close File(s)"))
         self.ClearSelectionButton.setText(_translate("self", "Clear Selection"))
