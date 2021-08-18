@@ -4,12 +4,15 @@ from PyQt5.QtWidgets import QFileDialog
 from data import data_handlers
 
 
+class FileOpenError(Exception):
+    pass
+
+
 def open_file_dialog():
     filename, _ = QFileDialog().getOpenFileName(filter="*.csv")
 
     if filename in data_handlers.data_store:
-        raise RuntimeError("File is already open")
-        filename = None # signal to calling method that no further action is needed
+        raise FileOpenError("File is already open")
 
     return filename
 

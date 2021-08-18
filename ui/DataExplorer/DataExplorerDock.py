@@ -1,11 +1,11 @@
 from PyQt5 import QtCore, QtWidgets
 
-import data.data_handlers
 from ui.DataExplorer.DataExplorerWidget import DataExplorerWidget
 from ui.CloseFilesDialog import CloseFilesDialog
+from ui import dialogs
 
-from files import file_handlers
 from data import data_handlers
+from files import file_handlers
 
 
 class DataExplorerDock(QtWidgets.QDockWidget):
@@ -38,6 +38,10 @@ class DataExplorerDock(QtWidgets.QDockWidget):
         self.CloseFileButton.setObjectName("CloseFileButton")
         self.ButtonsLayout.addWidget(self.CloseFileButton)
 
+        self.ClearSelectionButton = QtWidgets.QPushButton(self.DockContents)
+        self.ClearSelectionButton.setObjectName("ClearSelectionButton")
+        self.ButtonsLayout.addWidget(self.ClearSelectionButton)
+
         self.setMinimumSize(QtCore.QSize(200, 0))
         self.setWidget(self.DockContents)
 
@@ -51,17 +55,22 @@ class DataExplorerDock(QtWidgets.QDockWidget):
         self.setWindowTitle(_translate("self", "self"))
         self.OpenFileButton.setText(_translate("self", "Open File"))
         self.CloseFileButton.setText(_translate("self", "Close File(s)"))
+        self.ClearSelectionButton.setText(_translate("self", "Clear Selection"))
 
         return
 
     @QtCore.pyqtSlot()
     def on_OpenFileButton_clicked(self):
-        filename = file_handlers.open_file_dialog()
+        try:
+            filename = file_handlers.open_file_dialog()
+        except file_handlers.FileOpenError:
+            dialogs.show_warning("File is already open")
+            return
 
         if not filename: # empty filename: user closed dialog
             return
 
-        data.data_handlers.read_csv_data(filename)
+        data_handlers.read_csv_data(filename)
         self.DataExplorer.add_file_item(filename)
 
         return
@@ -80,3 +89,6 @@ class DataExplorerDock(QtWidgets.QDockWidget):
 
         return
 
+    @QtCore.pyqtSlot()
+    def on_ClearSelectionButton_clicked(self):
+        self.DataExplorer.clear_selection()
