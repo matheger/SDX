@@ -40,6 +40,10 @@ class DataExplorerDock(QtWidgets.QDockWidget):
         self.CloseFileButton.setObjectName("CloseFileButton")
         self.ButtonsLayout.addWidget(self.CloseFileButton)
 
+        self.CloseAllButton = QtWidgets.QPushButton(self.DockContents)
+        self.CloseAllButton.setObjectName("CloseAllButton")
+        self.ButtonsLayout.addWidget(self.CloseAllButton)
+
         self.ClearSelectionButton = QtWidgets.QPushButton(self.DockContents)
         self.ClearSelectionButton.setObjectName("ClearSelectionButton")
         self.ButtonsLayout.addWidget(self.ClearSelectionButton)
@@ -57,6 +61,7 @@ class DataExplorerDock(QtWidgets.QDockWidget):
         self.setWindowTitle(_translate("self", "Data Explorer"))
         self.OpenFileButton.setText(_translate("self", "Open File"))
         self.CloseFileButton.setText(_translate("self", "Close File(s)"))
+        self.CloseAllButton.setText(_translate("self", "Close All"))
         self.ClearSelectionButton.setText(_translate("self", "Clear Selection"))
 
         return
@@ -90,6 +95,11 @@ class DataExplorerDock(QtWidgets.QDockWidget):
                 file_handlers.close_file(filename, self.DataExplorer)
 
         return
+
+    @QtCore.pyqtSlot()
+    def on_CloseAllButton_clicked(self):
+        for filename in self.DataExplorer.file_items:
+            file_handlers.close_file(filename, self.DataExplorer)
 
     @QtCore.pyqtSlot()
     def on_ClearSelectionButton_clicked(self):
