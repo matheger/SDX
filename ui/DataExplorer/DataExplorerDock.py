@@ -98,7 +98,7 @@ class DataExplorerDock(QtWidgets.QDockWidget):
 
     @QtCore.pyqtSlot()
     def on_CloseAllButton_clicked(self):
-        open_files = self.DataExplorer.file_items.keys()
+        open_files = list(self.DataExplorer.file_items)
         for filename in open_files:
             file_handlers.close_file(filename, self.DataExplorer)
 
