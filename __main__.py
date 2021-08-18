@@ -34,8 +34,8 @@ def run():
     # store globally accessible handle to main window
     app.MainWindow = MainWindow
 
-    # MainWindow.showMaximized()
-    MainWindow.show()
+    MainWindow.showMaximized()
+    # MainWindow.show()
     sys.exit(app.exec_())
 
 
