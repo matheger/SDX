@@ -97,7 +97,7 @@ class DataExplorerWidget(QTreeWidget):
 
         # if auto updating is enabled, kick off the plotting call now (using the MainWindow method);
         # if update fails due to inconsistent dataset lengths, mimic the error in the MainWindow method
-        _mw = QtWidgets.QApplication.instance().MainWindow
+        _mw = QtWidgets.QApplication.instance().main_window
         if _mw.PlotSettingsDock.get_auto_update_setting():
             try:
                 _mw.update_plot()

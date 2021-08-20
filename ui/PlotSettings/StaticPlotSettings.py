@@ -70,7 +70,7 @@ class StaticPlotSettings(QtWidgets.QWidget):
     @QtCore.pyqtSlot()
     def on_UpdateButton_clicked(self):
         # MainWindow will delegate all necessary plotting calls
-        _mw = QtWidgets.QApplication.instance().MainWindow
+        _mw = QtWidgets.QApplication.instance().main_window
         _mw.update_plot()
 
         return

@@ -1,5 +1,6 @@
 from PyQt5.Qt import QTreeWidgetItem
 
+
 class DataExplorerColumnItem(QTreeWidgetItem):
     def __init__(self, parent, column_name, column_dtype):
         super().__init__(parent)
