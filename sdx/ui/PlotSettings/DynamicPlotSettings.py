@@ -20,6 +20,15 @@ class DynamicPlotSettings(QtWidgets.QWidget):
         self.HueSelect.setObjectName("HueSelect")
         self.formLayout.addRow("Hue", self.HueSelect)
 
+        self.HueSelect.currentTextChanged.connect(self._update_plot)
+
+        return
+
+    def _update_plot(self):
+        _mw = QtWidgets.QApplication.instance().main_window
+        if _mw.PlotSettingsDock.get_auto_update_setting():
+            _mw.update_plot()
+
         return
 
     def refresh_hue_selector(self):
