@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
             dialogs.show_error("Selected datasets have inconsistent lengths")
             return
         else:
-            # if not datasets are active, return without doing anything
+            # if no datasets are active, return without doing anything
             if data.empty:
                 return
 
