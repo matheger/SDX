@@ -14,6 +14,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setupUi()
 
+        return
+
     def setupUi(self):
         self.setObjectName("MainWindow")
 
@@ -59,13 +61,21 @@ class MainWindow(QMainWindow):
         except data_handlers.InconsistentLengthError:
             dialogs.show_error("Selected datasets have inconsistent lengths")
             return
+        else:
+            # if not datasets are active, return without doing anything
+            if data.empty:
+                return
 
         if (num_samples := self.PlotSettingsDock.get_num_samples_setting()):
             num_samples = min([len(data), num_samples]) # avoid ValueError when requesting too many samples
             data = data.sample(num_samples)
 
+        hue = self.PlotSettingsDock.DynamicPlotSettingsWidget.get_hue_selection()
+        if not hue:
+            hue = None
+
         try:
-            fig = data_handlers.create_seaborn_plot(data).fig
+            fig = data_handlers.create_seaborn_plot(data, hue).fig
         except ValueError:
             dialogs.show_warning("No data to display")
             return
@@ -73,3 +83,4 @@ class MainWindow(QMainWindow):
         self.PlotView.plot(fig)
 
         return
+

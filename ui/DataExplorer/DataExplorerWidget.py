@@ -7,10 +7,8 @@ from PyQt5.Qt import QTreeWidget
 
 from sdx.ui.DataExplorer.DataExplorerColumnItem import DataExplorerColumnItem
 from sdx.ui.DataExplorer.DataExplorerFileItem import DataExplorerFileItem
-from sdx.ui import dialogs
 
 from sdx.data import data_handlers
-from sdx.files import file_handlers
 
 
 class DataExplorerWidget(QTreeWidget):
@@ -24,7 +22,7 @@ class DataExplorerWidget(QTreeWidget):
         self.setColumnWidth(1, 10)
 
         self.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.MultiSelection)
-        self.itemSelectionChanged.connect(self.update_active_datasets)
+        self.itemSelectionChanged.connect(self.get_selected_datasets)
 
         self.file_items = {}
         self.allowed_dataset_len = None
@@ -74,34 +72,27 @@ class DataExplorerWidget(QTreeWidget):
         return
 
     @QtCore.pyqtSlot()
-    def update_active_datasets(self):
-        data_handlers.active_data.clear()
+    def get_selected_datasets(self):
+        current_items = self.selectedItems()
+        selection = defaultdict(list)
 
-        # if all data has been unselected, re-allow all datasets and do nothing else
-        if not self.selectedItems():
+        # if all data has been unselected, re-allow all datasets
+        if not current_items:
             self._allow_all_files()
-            return
 
-        for item in self.selectedItems():
+        for item in current_items:
             # operate only on column items, not file items (which shouldn't be selectable anyway)
             if not isinstance(item, DataExplorerColumnItem):
                 continue
 
             filename = item.parent().filename
-            data_handlers.active_data[filename].append(item.column_name)
+            selection[filename].append(item.column_name)
 
             # if no allowed dataset length is currently set, set it now
             if self.allowed_dataset_len is None:
                 self.allowed_dataset_len = data_handlers.get_dataset_len(filename)
                 self._disallow_inconsistent_files()
 
-        # if auto updating is enabled, kick off the plotting call now (using the MainWindow method);
-        # if update fails due to inconsistent dataset lengths, mimic the error in the MainWindow method
-        _mw = QtWidgets.QApplication.instance().main_window
-        if _mw.PlotSettingsDock.get_auto_update_setting():
-            try:
-                _mw.update_plot()
-            except data_handlers.InconsistentLengthError:
-                dialogs.show_error("Selected datasets have inconsistent lengths")
+        data_handlers.update_active_datasets(selection)
 
         return

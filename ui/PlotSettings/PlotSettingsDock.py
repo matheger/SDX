@@ -1,8 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 
 from sdx.ui.PlotSettings.StaticPlotSettings import StaticPlotSettings
-
-from sdx.data import data_handlers
+from sdx.ui.PlotSettings.DynamicPlotSettings import DynamicPlotSettings
 
 
 class PlotSettingsDock(QtWidgets.QDockWidget):
@@ -21,6 +20,13 @@ class PlotSettingsDock(QtWidgets.QDockWidget):
         # create static portion of properties section
         self.StaticPlotSettingsWidget = StaticPlotSettings(self)
         self.verticalLayout.addWidget(self.StaticPlotSettingsWidget)
+
+        self.DynamicPlotSettingsFrame = QtWidgets.QFrame(self)
+        self.testlayout = QtWidgets.QVBoxLayout(self.DynamicPlotSettingsFrame)
+        self.verticalLayout.addWidget(self.DynamicPlotSettingsFrame)
+
+        self.DynamicPlotSettingsWidget = DynamicPlotSettings(self)
+        self.testlayout.addWidget(self.DynamicPlotSettingsWidget)
 
         self.setMinimumSize(QtCore.QSize(200, 0))
         self.setWidget(self.DockContents)
