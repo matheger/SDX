@@ -18,8 +18,8 @@ class DataExplorerWidget(QTreeWidget):
         self.setObjectName("DataExplorer")
         self.setColumnCount(2)
         self.setHeaderLabels(["Column", "dtype"])
-        self.setColumnWidth(0, 80)
-        self.setColumnWidth(1, 10)
+        self.setColumnWidth(0, 200)
+        self.setColumnWidth(1, 50)
 
         self.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.MultiSelection)
         self.itemSelectionChanged.connect(self.get_selected_datasets)
