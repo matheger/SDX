@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from data import data_handlers
+from sdx.data import data_handlers
 
 
 class StaticPlotSettings(QtWidgets.QWidget):

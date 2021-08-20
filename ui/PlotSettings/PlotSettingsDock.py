@@ -1,8 +1,8 @@
 from PyQt5 import QtCore, QtWidgets
 
-from ui.PlotSettings.StaticPlotSettings import StaticPlotSettings
+from sdx.ui.PlotSettings.StaticPlotSettings import StaticPlotSettings
 
-from data import data_handlers
+from sdx.data import data_handlers
 
 
 class PlotSettingsDock(QtWidgets.QDockWidget):

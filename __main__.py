@@ -3,7 +3,7 @@ import traceback
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-import ui.MainWindow
+import sdx.ui.MainWindow
 
 
 # custom exception handler

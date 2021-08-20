@@ -5,12 +5,12 @@ import os.path
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.Qt import QTreeWidget
 
-from ui.DataExplorer.DataExplorerColumnItem import DataExplorerColumnItem
-from ui.DataExplorer.DataExplorerFileItem import DataExplorerFileItem
-from ui import dialogs
+from sdx.ui.DataExplorer.DataExplorerColumnItem import DataExplorerColumnItem
+from sdx.ui.DataExplorer.DataExplorerFileItem import DataExplorerFileItem
+from sdx.ui import dialogs
 
-from data import data_handlers
-from files import file_handlers
+from sdx.data import data_handlers
+from sdx.files import file_handlers
 
 
 class DataExplorerWidget(QTreeWidget):

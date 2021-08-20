@@ -1,12 +1,12 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.Qt import QMainWindow
 
-from ui.DataExplorer.DataExplorerDock import DataExplorerDock
-from ui.PlotSettings.PlotSettingsDock import PlotSettingsDock
-from ui.PlotView import PlotView
-from ui import dialogs
+from sdx.ui.DataExplorer.DataExplorerDock import DataExplorerDock
+from sdx.ui.PlotSettings.PlotSettingsDock import PlotSettingsDock
+from sdx.ui.PlotView import PlotView
+from sdx.ui import dialogs
 
-from data import data_handlers
+from sdx.data import data_handlers
 
 
 class MainWindow(QMainWindow):

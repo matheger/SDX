@@ -1,7 +1,7 @@
 import pandas as pd
 from PyQt5.QtWidgets import QFileDialog
 
-from data import data_handlers
+from sdx.data import data_handlers
 
 
 class FileOpenError(Exception):

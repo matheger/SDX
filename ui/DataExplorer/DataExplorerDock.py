@@ -1,11 +1,11 @@
 from PyQt5 import QtCore, QtWidgets
 
-from ui.DataExplorer.DataExplorerWidget import DataExplorerWidget
-from ui.CloseFilesDialog import CloseFilesDialog
-from ui import dialogs
+from sdx.ui.DataExplorer.DataExplorerWidget import DataExplorerWidget
+from sdx.ui.CloseFilesDialog import CloseFilesDialog
+from sdx.ui import dialogs
 
-from data import data_handlers
-from files import file_handlers
+from sdx.data import data_handlers
+from sdx.files import file_handlers
 
 
 class DataExplorerDock(QtWidgets.QDockWidget):

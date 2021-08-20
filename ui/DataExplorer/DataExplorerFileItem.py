@@ -3,9 +3,9 @@ import os.path
 from PyQt5 import QtCore
 from PyQt5.Qt import QTreeWidgetItem
 
-from ui.DataExplorer.DataExplorerColumnItem import DataExplorerColumnItem
+from sdx.ui.DataExplorer.DataExplorerColumnItem import DataExplorerColumnItem
 
-from data import data_handlers
+from sdx.data import data_handlers
 
 
 class DataExplorerFileItem(QTreeWidgetItem):
