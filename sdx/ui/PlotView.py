@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
@@ -10,6 +10,8 @@ class PlotView(FigureCanvasQTAgg):
     def __init__(self):
         super().__init__()
         self.setObjectName("PlotView")
+        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.context_menu)
 
         return
 
@@ -27,3 +29,15 @@ class PlotView(FigureCanvasQTAgg):
 
         return
 
+    def context_menu(self):
+        menu = QtWidgets.QMenu()
+        menu.addAction("Save", self.save_figure)
+        menu.exec(QtGui.QCursor.pos())
+
+        return
+
+    def save_figure(self):
+        filename, _ = QtWidgets.QFileDialog().getSaveFileName(self, filter="*.png")
+        self.figure.savefig(filename)
+
+        return
